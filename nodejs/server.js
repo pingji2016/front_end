@@ -47,10 +47,7 @@ app.all('/delay', (Request, Response)=>{
     setTimeout(() => {
         Response.send('hello delay');
     },3000);
-
-
 });
-
 
 // Ie缓存, 超时
 app.all('/home', (Request, Response)=>{
