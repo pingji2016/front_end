@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="widrg=device-width">
+<meta name="viewport" charset="UTF-8">
+<title>axios AJAX</title>
+<style>
+  #result{
+    width:200px;
+    height: 500px;
+    border: solid 1px #90b
+  }
+</style>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <div id="result"></div>
+  <button>  点击GET</button>
+  <button>  点击POSt</button>
+  <button>  点击AJAX</button>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0];
+    const result = document.getElementById('result');
+    btn.addEventListener('click', function(){
+      axios.get('http:127.0.0.1:8000/ie',{
+        params: {
+          id:100,
+          vip:7
+        },
+        Headers: {
+          name: 'zfm',
+          age: 20
+        }
+      });
+
+    })
+  </script>
+</table>
+</body>
+</html>

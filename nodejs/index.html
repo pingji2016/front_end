@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="widrg=device-width">
+<meta name="viewport" charset="UTF-8">
+<title>axios AJAX</title>
+<style>
+  #result{
+    width:200px;
+    height: 500px;
+    border: solid 1px #90b
+  }
+</style>
+
+</head>
+
+<body>
+  <div id="result"></div>
+  <button>  点击服务</button>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0];
+    const result = document.getElementById('result');
+    btn.addEventListener('click', function(){
+      //1 ajax 操作
+      xhr = new  XMLHttpRequest();
+
+      //2初始哈
+      isSending = true;
+      xhr.open('GET', '/server');
+
+      //3发送
+      xhr.send();
+
+      //4事件绑定 ,处理服务端返回为40 未初始化 1
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          isSending =false;
+          if (xhr.status >= 200 && xhr.status < 300){
+            result.innerHTML = xhr.response;
+          }
+        }
+      }
+      })
+  </script>
+</table>
+</body>
+</html>

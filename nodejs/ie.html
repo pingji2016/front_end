@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="widrg=device-width">
+<meta name="viewport" charset="UTF-8">
+<title>GET AJAX</title>
+<style>
+  #result{
+    width:200px;
+    height: 500px;
+    border: solid 1px #90b
+  }
+</style>
+</head>
+
+<body>
+  <div id="result"></div>
+  <button>  点击发 送</button>
+
+  <script>
+    const btn = document.getElementsByTagName('button')[0];
+    const result = document.getElementById('result');
+    btn.addEventListener('click', function(){
+      //1 ajax 操作
+      const xhr = new  XMLHttpRequest();
+
+      //2初始哈
+      xhr.open('GET', 'http:127.0.0.1:8000/ie');
+
+      //3发送
+      xhr.send();
+
+      xhr.timeout = 2000;
+
+      xhr.onerror =function(){
+        alert("网络异常");
+      }
+
+
+      xhr.ontimeout =function(){
+        alert("网络异常22");
+      }
+
+      //4事件绑定 ,处理服务端返回为40 未初始化 1
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if (xhr.status >= 200 && xhr.status < 300){
+            result.innerHTML = xhr.response;
+
+          }else{
+
+          }
+        }
+      }
+    })
+  </script>
+</table>
+</body>
+</html>

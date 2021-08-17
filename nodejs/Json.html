@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="widrg=device-width">
+<meta name="viewport" charset="UTF-8">
+<title>GET AJAX</title>
+<style>
+  #result{
+    width:200px;
+    height: 500px;
+    border: solid 1px #90b
+  }
+</style>
+</head>
+
+<body>
+  <div id="result"></div>
+
+  <script>
+    const result = document.getElementById('result');
+    window.onkeydown = function(){
+      //1 ajax 操作
+      const xhr = new  XMLHttpRequest();
+
+      //2初始哈
+      xhr.open('GET', 'http:127.0.0.1:8000/json-server');
+
+      //3发送
+      xhr.send();
+
+      xhr.responseType = 'json';
+
+      //4事件绑定 ,处理服务端返回为40 未初始化 1
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if (xhr.status >= 200 && xhr.status < 300){
+              // console.log(xhr.status)
+              // console.log(xhr.statusText)
+              // console.log(xhr.response)
+              result.innerHTML = xhr.response;
+              let data = result.name;
+              result.innerHTML += xhr.response.name;
+              result.innerHTML += data;
+
+          }else{
+
+          }
+        }
+      }
+    }
+  </script>
+</table>
+</body>
+</html>

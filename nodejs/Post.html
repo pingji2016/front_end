@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="widrg=device-width">
+<meta name="viewport" charset="UTF-8">
+<title>POST AJAX</title>
+<style>
+  #result{
+    width:200px;
+    height: 500px;
+    border: solid 1px #903
+  }
+</style>
+</head>
+
+<body>
+  <div id="result"></div>
+
+  <script>
+    const result = document.getElementById('result');
+    result.addEventListener('mouseover', function(){
+      //1 ajax 操作
+      const xhr = new  XMLHttpRequest();
+
+      //2初始哈
+      xhr.open('POST', 'http://127.0.0.1:8000/server');
+
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+
+      xhr.setRequestHeader('name', 'application/x-www-form-urlencoded');
+      //3发送
+      xhr.send('a=100&b=200');
+
+      //4事件绑定 ,处理服务端返回为40 未初始化 1
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if (xhr.status >= 200 && xhr.status < 300){
+              // console.log(xhr.status)
+              // console.log(xhr.statusText)
+              // console.log(xhr.response)
+              result.innerHTML = xhr.response;
+          }else{
+
+          }
+        }
+      }
+    });
+  </script>
+</table>
+</body>
+</html>
